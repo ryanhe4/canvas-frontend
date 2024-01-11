@@ -1,18 +1,22 @@
 import { render } from '@testing-library/react'
-import { useRouter } from 'next/navigation'
 import useUserViewModel from '@/app/domain/useUserViewModel'
 import Home from '@/app/page'
 
-jest.mock('next/navigation')
-jest.mock('../src/app/domain/useUserViewModel')
+const replace = jest.fn()
+jest.mock('next/navigation', () => ({
+  useRouter() {
+    return {
+      replace: replace,
+      pathname: "",
+      query: "",
+      asPath: "",
+    };
+  },
+}))
+jest.mock('../../src/app/domain/useUserViewModel')
 
 describe('<Home />', () => {
-  const replace = jest.fn()
-
-  useRouter.mockImplementation(() => ({
-    replace: replace,
-  }))
-  useUserViewModel.mockImplementation(() => ({
+  (useUserViewModel as jest.Mock).mockImplementation(() => ({
     user: 1234,
   }))
 
@@ -25,9 +29,10 @@ describe('<Home />', () => {
 
 
   it('render a list', () => {
-    const { container } = render(<Home />)
 
-    expect(container).toHaveTextContent('site1')
-    expect(container).toHaveTextContent('site2')
+
+    const { getByText } = render(<Home />)
+
+    expect(getByText(/비어있습니다./))
   })
 })

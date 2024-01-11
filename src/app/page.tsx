@@ -1,7 +1,30 @@
+"use client"
+
+import Link from 'next/link'
+import useUserViewModel from '@/domain/useUserViewModel'
+import { useRouter } from 'next/navigation'
+
 export default function Home() {
-    return (
-        <main className={'text-3xl font-bold underline'}>
-            test
-        </main>
-    )
+  const router = useRouter()
+  const { user } = useUserViewModel()
+
+  if (user === null) {
+    router.replace('login')
+  }
+
+  return (
+    <main className={'text-3xl font-bold underline'}>
+      <p>site list</p>
+      <ul>
+        <li>
+          <Link href={'canvas'}>site1</Link>
+        </li>
+        <li>site2</li>
+        <li>site3</li>
+        <li>site4</li>
+      </ul>
+
+      <button>create site</button>
+    </main>
+  )
 }

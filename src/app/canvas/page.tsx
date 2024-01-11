@@ -14,12 +14,12 @@ export default function Canvas() {
       <div className={'w-full bg-amber-200'}>Toolbar
         <button
           onClick={() => handleChangeMode(mode === 'SELECT' ? 'EMPTY' : 'SELECT')}
-          className={`m-4 bg-amber-600 rounded text-white' : ''}`}>
+          className={`bg-amber-600 rounded text-white' : ''}`}>
           <p className={mode === 'SELECT' ? 'text-red-400' : ''}>Select</p>
         </button>
         <button
           onClick={() => handleChangeMode(mode === 'CREATE' ? 'EMPTY' : 'CREATE')}
-          className={`m-4 bg-amber-600 rounded text-white ${mode === 'CREATE' ? 'text-red-500' : ''}`}>
+          className={`bg-amber-600 rounded text-white ${mode === 'CREATE' ? 'text-red-500' : ''}`}>
           <p className={mode === 'CREATE' ? 'text-red-400' : ''}>Create</p>
         </button>
         <button>UnDo</button>

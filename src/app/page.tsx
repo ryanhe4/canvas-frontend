@@ -1,16 +1,19 @@
-"use client"
+'use client'
 
 import Link from 'next/link'
-import useUserViewModel from '@/domain/useUserViewModel'
+import useUserViewModel from '@/app/domain/useUserViewModel'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 export default function Home() {
   const router = useRouter()
   const { user } = useUserViewModel()
 
-  if (user === null) {
-    router.replace('login')
-  }
+  useEffect(() => {
+    if (user === null) {
+      router.replace('login')
+    }
+  }, [])
 
   return (
     <main className={'text-3xl font-bold underline'}>

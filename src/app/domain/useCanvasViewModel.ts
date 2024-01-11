@@ -1,21 +1,34 @@
 import { useMemo, useState } from 'react'
-import { FigureRect, useFigureActions, useFigures } from '@/data/local/useCanvasStore'
+import {
+  CanvasMode,
+  FigureRect,
+  useCanvasMode,
+  useCanvasSelect,
+  useFigureActions,
+  useFigures,
+} from '@/app/data/local/useCanvasStore'
 import Konva from 'konva'
 import KonvaEventObject = Konva.KonvaEventObject
 
 function useCanvasViewModel() {
   const figures = useFigures()
+  const mode = useCanvasMode()
   const actions = useFigureActions()
   const [newFigure, setNewFigure] = useState<FigureRect | null>(null)
+  const selectedId = useCanvasSelect()
+
+  const handleClickChangeMode = (mode: CanvasMode) => {
+    actions.updateMode(mode)
+    actions.updateSelectedRect(null)
+  }
 
   const handleMouseDown = (event: KonvaEventObject<MouseEvent>) => {
-    if (newFigure === null) {
+    if (newFigure === null && mode === 'CREATE') {
       const position = event?.target?.getStage()?.getPointerPosition()
 
       if (position === null || position === undefined) {
         return
       }
-
       const { x, y } = position
 
       setNewFigure({ x, y, width: 0, height: 0, key: '0' })
@@ -23,7 +36,7 @@ function useCanvasViewModel() {
   }
 
   const handleMouseUp = (event: KonvaEventObject<MouseEvent>) => {
-    if (newFigure !== null) {
+    if (newFigure !== null && mode === 'CREATE') {
       const sx = newFigure.x
       const sy = newFigure.y
       const position = event?.target?.getStage()?.getPointerPosition()
@@ -31,7 +44,6 @@ function useCanvasViewModel() {
       if (position === null || position === undefined) {
         return
       }
-
       const { x, y } = position
 
       const annotationToAdd: FigureRect = {
@@ -41,13 +53,14 @@ function useCanvasViewModel() {
         height: y - sy,
         key: (figures.length + 1).toString(),
       }
+
       setNewFigure(null)
       actions.addFigure(annotationToAdd)
     }
   }
 
   const handleMouseMove = (event: KonvaEventObject<MouseEvent>) => {
-    if (newFigure !== null) {
+    if (newFigure !== null && mode === 'CREATE') {
       const sx = newFigure.x
       const sy = newFigure.y
       const position = event?.target?.getStage()?.getPointerPosition()
@@ -79,7 +92,14 @@ function useCanvasViewModel() {
   }, [figures, newFigure])
 
   return {
-    combinedFigure, handleMouseDown, handleMouseMove, handleMouseUp,
+    combinedFigure,
+    mode,
+    selectedId,
+    updateSelect: actions.updateSelectedRect,
+    handleMouseDown,
+    handleMouseMove,
+    handleMouseUp,
+    handleChangeMode: handleClickChangeMode,
   }
 }
 

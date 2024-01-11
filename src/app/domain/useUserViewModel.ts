@@ -1,5 +1,5 @@
 "use client"
-import { useUser, useUserActions } from '@/data/local/useUserStore'
+import { useUser, useUserActions } from '@/app/data/local/useUserStore'
 
 const useUserViewModel = () => {
   const user = useUser()

@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react'
 import React from 'react'
-import SiteItem from '@/app/components/SiteItem'
-import { Site } from '@/app/data/local/useSiteStore'
+import SiteItem from '@/components/SiteItem'
+import { Site } from '@/data/local/useSiteStore'
 
 describe('<SiteItem />', () => {
   it('renders a empty list', () => {

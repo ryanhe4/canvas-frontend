@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Site } from '@/app/data/local/useSiteStore'
+import { Site } from '@/data/local/useSiteStore'
 
 type SiteItemProps = {
   site: Site

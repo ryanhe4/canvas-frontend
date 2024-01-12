@@ -1,6 +1,6 @@
 import React from 'react'
-import SiteList from '@/app/components/SiteList'
-import useSiteViewModel from '@/app/domain/useSiteViewModel'
+import useSiteViewModel from '@/domain/useSiteViewModel'
+import SiteList from '@/components/SiteList'
 
 function SiteContainer() {
   const sites = useSiteViewModel();

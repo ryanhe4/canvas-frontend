@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
-import SiteList from '@/app/components/SiteList'
-import { Site } from '@/app/data/local/useSiteStore'
+import SiteList from '@/components/SiteList'
+import { Site } from '@/data/local/useSiteStore'
 
 describe('<SiteList />', () => {
   context('with data', () => {

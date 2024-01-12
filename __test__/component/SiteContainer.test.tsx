@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import SiteContainer from '@/app/components/SiteContainer'
+import SiteContainer from '@/components/SiteContainer'
 
 jest.mock('@/app/domain/useSiteViewModel', () => {
   return jest.fn(()=> [])

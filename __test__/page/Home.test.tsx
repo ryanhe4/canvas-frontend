@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react'
-import useUserViewModel from '@/app/domain/useUserViewModel'
+import useUserViewModel from '@/domain/useUserViewModel'
 import Home from '@/app/page'
-import useSiteViewModel from '@/app/domain/useSiteViewModel'
+import useSiteViewModel from '@/domain/useSiteViewModel'
 
 const replace = jest.fn()
 jest.mock('next/navigation', () => ({

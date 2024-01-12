@@ -3,8 +3,8 @@
 const nextConfig = {
   webpack: (config) => {
     config.externals.push({
-      canvas: 'commonjs canvas'
-    }) // required to make Konva & react-konva work
+      canvas: 'canvas'
+    })
     return config;
   },
 }

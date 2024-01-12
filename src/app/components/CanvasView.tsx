@@ -1,7 +1,8 @@
+'use client'
 import { Group, Layer, Rect, Stage } from 'react-konva'
 import useCanvasViewModel from '@/app/domain/useCanvasViewModel'
 
-function Canvas() {
+function CanvasView() {
   const {
     combinedFigure,
     selectedId,
@@ -79,4 +80,4 @@ function Canvas() {
   </Stage>
 }
 
-export default Canvas
+export default CanvasView

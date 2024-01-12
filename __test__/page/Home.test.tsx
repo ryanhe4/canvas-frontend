@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react'
 import useUserViewModel from '@/app/domain/useUserViewModel'
 import Home from '@/app/page'
+import useSiteViewModel from '@/app/domain/useSiteViewModel'
 
 const replace = jest.fn()
 jest.mock('next/navigation', () => ({
@@ -13,7 +14,9 @@ jest.mock('next/navigation', () => ({
     };
   },
 }))
-jest.mock('../../src/app/domain/useUserViewModel')
+
+jest.mock('@/app/domain/useUserViewModel')
+jest.mock('@/app/domain/useSiteViewModel', () => {return jest.fn(()=> [])})
 
 describe('<Home />', () => {
   (useUserViewModel as jest.Mock).mockImplementation(() => ({
@@ -27,10 +30,7 @@ describe('<Home />', () => {
     expect(replace).not.toBeCalled()
   })
 
-
-  it('render a list', () => {
-
-
+  it('render a empty list', () => {
     const { getByText } = render(<Home />)
 
     expect(getByText(/비어있습니다./))

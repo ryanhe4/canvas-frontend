@@ -1,6 +1,6 @@
 import React from 'react'
-import { Site } from '@/app/components/SiteContainer'
 import Link from 'next/link'
+import { Site } from '@/app/data/local/useSiteStore'
 
 type SiteItemProps = {
   site: Site
@@ -9,7 +9,7 @@ type SiteItemProps = {
 function SiteItem({ site }: SiteItemProps) {
   return (
     <li>
-      <Link href={'canvas'}>{site.name}</Link>
+      <Link href={'editor'}>{site.name}</Link>
     </li>)
 }
 

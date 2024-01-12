@@ -9,9 +9,9 @@ const config: Config = {
     coverageProvider: 'v8',
     testEnvironment: 'jsdom',
     // Add more setup options before each test is run
-    setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+    setupFilesAfterEnv: ['<rootDir>/jest.setup.ts', 'jest-plugin-context/setup'],
     moduleNameMapper: {
-        '^@/src/(.*)$': '<rootDir>/src/$1',
+        '^@/(.*)$': '<rootDir>/src/$1',
     },
 }
 

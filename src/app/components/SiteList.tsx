@@ -1,6 +1,6 @@
 import React from 'react'
-import { Site } from '@/app/components/SiteContainer'
 import SiteItem from '@/app/components/SiteItem'
+import { Site } from '@/app/data/local/useSiteStore'
 
 type SiteListProps = {
   data: Site[]

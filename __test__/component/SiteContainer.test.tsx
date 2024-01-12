@@ -1,9 +1,11 @@
 import { render } from '@testing-library/react'
 import SiteContainer from '@/app/components/SiteContainer'
 
-describe('<SiteContainer />', () => {
-  const replace = jest.fn()
+jest.mock('@/app/domain/useSiteViewModel', () => {
+  return jest.fn(()=> [])
+})
 
+describe('<SiteContainer />', () => {
   it('renders a sites', () => {
     const { getByText } = render(<SiteContainer />)
 
